@@ -5,7 +5,7 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", (userInput) => {
-  const input = BigInt(userInput);
+  const input = Number(userInput);
   let sum = 0;
   let cnt = 0;
 
