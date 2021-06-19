@@ -14,9 +14,8 @@ function virus() {
   this.solution = (inputArr) => {
     const num = Number(inputArr.shift());
     const contact = Number(inputArr.shift());
-    const temp = Number(inputArr);
     console.log(num, contact);
-    console.log(temp);
+    console.log(inputArr);
   };
 }
 
