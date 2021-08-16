@@ -1,22 +1,22 @@
 // 내가 짠 코드
-// function solution(num) {
-//     let answer = 0;
+function solution(num) {
+    let answer = 0;
 
-//     while(num) {
-//         if(num==1) {return answer;}
-//         if(num % 2 == 0) {
-//             num /= 2;
-//             answer++;
-//         } else if(answer > 483) {
-//             return answer = -1;
-//         }
-//         else {
-//             num = num * 3 + 1;
-//             answer++;
-//         }
-//     }
-//     return answer;
-// }
+    while(num) {
+        if(num==1) {return answer;}
+        if(num % 2 == 0) {
+            num /= 2;
+            answer++;
+        } else if(answer > 483) {
+            return answer = -1;
+        }
+        else {
+            num = num * 3 + 1;
+            answer++;
+        }
+    }
+    return answer;
+}
 
 // 아름다운 코드
 function collatz(num) {
