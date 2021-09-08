@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        let n = arr.length;
+        // 끄트머리 0으로 채우기
+        let myArr = Array.from(Array(n + 2), () => new Array(n + 2).fill(0));
+
+        for (let i = 1; i < myArr.length - 1; i++) {
+          for (let j = 1; j < myArr.length - 1; j++) {
+            myArr[i][j] = arr[i - 1][j - 1];
+          }
+        }
+
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            if (
+              myArr[i][j] > myArr[i][j + 1] &&
+              myArr[i][j] > myArr[i][j - 1] &&
+              myArr[i][j] > myArr[i + 1][j] &&
+              myArr[i][j] > myArr[i - 1][j]
+            ) {
+              answer++;
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

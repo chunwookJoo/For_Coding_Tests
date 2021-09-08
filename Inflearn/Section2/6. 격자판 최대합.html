@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        let row = (col = 0);
+        let lcross = (rcross = 0);
+        let n = arr.length;
+
+        for (let i = 0; i < n; i++) {
+          row = 0;
+          col = 0;
+
+          // 행 열 크기 비교
+          for (let j = 0; j < n; j++) {
+            row += arr[i][j];
+            col += arr[j][i];
+          }
+
+          // 대각선 합 구하기
+          lcross += arr[n - (i + 1)][i];
+          rcross += arr[i][i];
+        }
+        answer = Math.max(answer, lcross, rcross, row, col);
+        return answer;
+      }
+
+      let arr = [
+        [10, 13, 10, 12, 15],
+        [12, 39, 30, 23, 11],
+        [11, 25, 50, 53, 15],
+        [19, 27, 29, 37, 27],
+        [19, 13, 30, 13, 19],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
