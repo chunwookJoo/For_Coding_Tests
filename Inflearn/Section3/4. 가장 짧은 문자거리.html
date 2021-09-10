@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let answer = [];
+        let arr1 = [];
+        let arr2 = [];
+        let cnt = 100;
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === t) {
+            cnt = 0;
+            arr1.push(cnt);
+          } else arr1.push(++cnt);
+        }
+
+        cnt = 100;
+        for (let j = s.length - 1; j >= 0; j--) {
+          if (s[j] === t) {
+            cnt = 0;
+            arr2.unshift(cnt);
+          } else arr2.unshift(++cnt);
+        }
+
+        for (let k = 0; k < s.length; k++) {
+          answer.push(Math.min(arr1[k], arr2[k]));
+        }
+        return answer;
+      }
+
+      let str = "teachermode";
+      console.log(solution(str, "e"));
+    </script>
+  </body>
+</html>
