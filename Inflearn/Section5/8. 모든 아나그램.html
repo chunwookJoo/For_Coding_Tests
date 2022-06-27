@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			function compareHash(hashT, hashS) {
+				if (hashT.size !== hashS.size) return false;
+				for (let [key, value] of hashS) {
+					if (!hashT.has(key) || hashT.get(key) !== value) return false;
+				}
+
+				return true;
+			}
+
+			// T 해쉬맵 만들기
+			function makeTHash(t) {
+				let hashT = new Map();
+
+				for (let i of t) {
+					if (hashT.has(i)) hashT.set(i, hashT.get(i) + 1);
+					else hashT.set(i, 1);
+				}
+
+				return hashT;
+			}
+
+			// S 해쉬맵 만들기 (t길이 -1 까지만)
+			function makeSHash(s, tLen) {
+				let hashS = new Map();
+
+				for (let i = 0; i < tLen; i++) {
+					if (hashS.has(s[i])) hashS.set(s[i], hashS.get(s[i]) + 1);
+					else hashS.set(s[i], 1);
+				}
+
+				return hashS;
+			}
+
+			function solution(s, t) {
+				let answer = 0;
+				let lp = 0;
+				let tLen = t.length - 1; // sHash를 t의 길이 -1 전까지 세팅
+
+				let hashT = makeTHash(t);
+				let hashS = makeSHash(s, tLen);
+
+				for (let rp = tLen; rp < s.length; rp++) {
+					// rp 한칸 추가
+					if (hashS.has(s[rp])) hashS.set(s[rp], hashS.get(s[rp]) + 1);
+					else hashS.set(s[rp], 1);
+
+					// rp가 한칸 추가되면 s, t 해쉬 비교하고 아나그램이 되면 answer + 1;
+					if (compareHash(hashT, hashS)) answer++;
+
+					// lp -1 (오른쪽으로 한칸 추가)
+					hashS.set(s[lp], hashS.get(s[lp]) - 1);
+
+					// 추가한 문자가 없으면
+					if (hashS.get(s[lp]) === 0) hashS.delete(s[lp]);
+					lp++;
+				}
+
+				return answer;
+			}
+
+			let a = "cabcab";
+			let b = "abc";
+			console.log(solution(a, b));
+		</script>
+	</body>
+</html>
