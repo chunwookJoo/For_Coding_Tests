@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			function solution(s) {
+				let answer;
+				let stack = [];
+				let lt = 0;
+				let rt = 0;
+
+				for (let i of s) {
+					if (!isNaN(i)) stack.push(Number(i));
+					else {
+						rt = stack.pop();
+						lt = stack.pop();
+
+						switch (i) {
+							case "+":
+								stack.push(lt + rt);
+								break;
+							case "-":
+								stack.push(lt - rt);
+								break;
+							case "*":
+								stack.push(lt * rt);
+								break;
+							case "/":
+								stack.push(lt / rt);
+								break;
+							default:
+								break;
+						}
+					}
+				}
+				return (answer = stack[0]);
+			}
+
+			let str = "35-";
+			console.log(solution(str));
+		</script>
+	</body>
+</html>
