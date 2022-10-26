@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			// 1. 처음 들어오는게 레이저인지 확인 (레이저가 처음으로 들어오면 막대기 없으므로 ++ x)
+			// 2. 여는괄호 계속해서 stack에 push
+			// 3. 닫는괄호가 들어오면 이 전 (stack[stack.length -1]) 괄호 어떤건지 확인
+			// 4. 이 전 괄호가 여는 괄호면 레이저 (stack 개수 ++), 닫는 괄호면 막대기 끝 (+1)
+
+			function solution(s) {
+				let answer = 0;
+				const stack = [];
+
+				for (let i = 0; i < s.length; i++) {
+					if (s[i] === "(") {
+						stack.push(s[i]);
+					} else {
+						stack.pop();
+						console.log(stack);
+						if (s[i - 1] === "(") {
+							answer += stack.length;
+						} else {
+							answer += 1;
+						}
+					}
+				}
+
+				return answer;
+			}
+
+			let a = "()(((()())(())()))(())";
+			console.log(solution(a));
+		</script>
+	</body>
+</html>

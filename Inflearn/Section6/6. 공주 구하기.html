@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			function solution(n, k) {
+				let answer;
+
+				const arr = Array.from({ length: n }, (_, i) => i + 1);
+
+				while (arr.length > 1) {
+					for (let i = 1; i < k; i++) {
+						arr.push(arr.shift());
+					}
+					arr.shift();
+				}
+				return (answer = arr.pop());
+			}
+
+			console.log(solution(10, 3));
+		</script>
+	</body>
+</html>
