@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			function solution(n) {
+				let answer = "";
+
+				function BFS(n) {
+					const num = 2;
+
+					if (n === 0) return;
+
+					BFS(parseInt(n / num));
+					answer += n % num;
+				}
+
+				BFS(n);
+				return answer;
+			}
+
+			console.log(solution(11));
+		</script>
+	</body>
+</html>

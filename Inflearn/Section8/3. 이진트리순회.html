@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>출력결과</title>
+	</head>
+	<body>
+		<script>
+			function solution(n) {
+				let answer = "";
+				const preOrderArr = [];
+				const inOrderArr = [];
+				const postOrderArr = [];
+
+				function preOrder(v) {
+					if (v > 7) {
+						return;
+					} else {
+						preOrderArr.push(v);
+						preOrder(v * 2);
+						preOrder(v * 2 + 1);
+					}
+				}
+
+				function inOrder(v) {
+					if (v > 7) {
+						return;
+					} else {
+						inOrder(v * 2);
+						inOrderArr.push(v);
+						inOrder(v * 2 + 1);
+					}
+				}
+
+				function postOrder(v) {
+					if (v > 7) {
+						return;
+					} else {
+						postOrder(v * 2);
+						postOrder(v * 2 + 1);
+						postOrderArr.push(v);
+					}
+				}
+
+				preOrder(n);
+				inOrder(n);
+				postOrder(n);
+
+				console.log(preOrderArr);
+				console.log(inOrderArr);
+				console.log(postOrderArr);
+				return answer;
+			}
+
+			console.log(solution(1));
+		</script>
+	</body>
+</html>
