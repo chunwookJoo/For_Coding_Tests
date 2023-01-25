@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let minIndex = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+          minIndex = i; // 맨처음의 인덱스
+
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIndex]) {
+              minIndex = j;
+            }
+          }
+          let temp = arr[minIndex];
+          arr[minIndex] = arr[i];
+          arr[i] = temp;
+        }
+
+        return arr;
+      }
+
+      function bubble(arr) {
+        for (let i = arr.length; i > 0; i--) {
+          for (let j = 0; j < i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              let temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+
+        return arr;
+      }
+
+      function insertion(arr) {
+        for (let i = 1; i < arr.length; i++) {
+          let cur = arr[i]; // 앞 요소들과 비교하기위해 index 1부터 시작
+          let leftIndex = i - 1;
+
+          // 바로 이전값과 비교하여 현재 값보다 크고, 0보다 크거나 같을때 교환
+          while (leftIndex >= 0 && arr[leftIndex] > cur) {
+            arr[leftIndex + 1] = arr[leftIndex];
+            arr[leftIndex] = cur;
+            cur = arr[leftIndex];
+            leftIndex--;
+          }
+        }
+        return arr;
+      }
+
+      function radixSort(arr) {
+        // 자릿수에 해당하는 숫자 반환
+        function getDigit(num, i) {
+          return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+        }
+
+        // 숫자의 자릿수를 반환해주는 함수
+        function digitCount(num) {
+          return num.toString().length;
+        }
+
+        // 가장 큰 자릿수 반환해주는 함수
+        function mostDigits(nums) {
+          let maxDigits = 0;
+          for (let i = 0; i < nums.length; i++) {
+            maxDigits = Math.max(maxDigits, digitCount(nums[i]));
+          }
+          return maxDigits;
+        }
+
+        // 배열에서 가장 큰 자릿수를 저장
+        const maxDigits = mostDigits(arr);
+
+        for (let k = 0; k < maxDigits; k++) {
+          let digitBuckets = Array.from({ length: 10 }, () => []); // 각 자릿수에 맞는 버킷 생성
+          for (let i = 0; i < arr.length; i++) {
+            let digit = getDigit(arr[i], k);
+            digitBuckets[digit].push(arr[i]);
+          }
+          arr = [].concat(...digitBuckets); // 버킷에 있는 값들을 전개연산자로 전개해준다
+        }
+        return arr;
+      }
+
+      let arr = [
+        3221, 1, 10, 9680, 577, 9420, 7, 5622, 4793, 2030, 3138, 82, 2599, 743,
+        4127,
+      ];
+      // console.log(solution(arr));
+      // console.log(insertion(arr));
+      console.log(radixSort(arr));
+      // console.log(bubble(arr));
+    </script>
+  </body>
+</html>
