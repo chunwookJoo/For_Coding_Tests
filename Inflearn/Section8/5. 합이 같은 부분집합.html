@@ -5,13 +5,26 @@
   </head>
   <body>
     <script>
-      function DFS(l, sum, arr) {}
-
       function solution(arr) {
         let answer = "NO";
-        let sum = arr.reduce((acc, currentValue) => acc + currentValue, 0);
+        let totalSum = arr.reduce((acc, currentValue) => acc + currentValue, 0);
         let n = arr.length;
-        DFS(sum, arr);
+        let flag = false;
+
+        function DFS(l, sum) {
+          if (flag) return;
+          if (l === n) {
+            if (totalSum - sum === sum) {
+              answer = "YES";
+              flag = true;
+            }
+          } else {
+            DFS(l + 1, sum + arr[l]);
+            DFS(l + 1, sum);
+          }
+        }
+
+        DFS(0, 0);
         return answer;
       }
 

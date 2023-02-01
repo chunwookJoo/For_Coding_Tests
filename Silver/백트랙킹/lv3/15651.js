@@ -1,6 +1,6 @@
 const input = require("fs")
-  // .readFileSync("15651ex.txt")
-  .readFileSync("/dev/stdin")
+  .readFileSync("15651ex.txt")
+  // .readFileSync("/dev/stdin")
   .toString()
   .trim()
   .split(" ")
