@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let answer = 0;
+        const dx = [-1, 0, 1, 0];
+        const dy = [0, 1, 0, -1];
+
+        const DFS = (x, y) => {
+          if (x === 6 && y === 6) answer++;
+          else {
+            for (let i = 0; i < dx.length; i++) {
+              let nextX = x + dx[i];
+              let nextY = y + dy[i];
+
+              if (
+                nextX >= 0 &&
+                nextX <= 6 &&
+                nextY >= 0 &&
+                nextY <= 6 &&
+                !board[nextX][nextY]
+              ) {
+                board[nextX][nextY] = 1;
+                DFS(nextX, nextY);
+                board[nextX][nextY] = 0;
+              }
+            }
+          }
+        };
+
+        DFS(0, 0);
+        return answer;
+      }
+
+      let arr = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [1, 1, 0, 1, 0, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

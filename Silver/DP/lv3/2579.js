@@ -1,6 +1,6 @@
 const input = require("fs")
-  // .readFileSync("2579ex.txt")
-  .readFileSync("/dev/stdin")
+  .readFileSync("2579ex.txt")
+  // .readFileSync("/dev/stdin")
   .toString()
   .trim()
   .split("\n")
@@ -8,6 +8,7 @@ const input = require("fs")
 
 const stairLength = input.shift();
 const stairScoreArr = input;
+console.log(stairScoreArr);
 
 const dyArr = new Array(stairLength).fill(0);
 dyArr[0] = stairScoreArr[0];
@@ -23,5 +24,7 @@ for (let i = 3; i < stairLength; i++) {
     dyArr[i - 2] + stairScoreArr[i]
   );
 }
+
+console.log(dyArr);
 
 console.log(dyArr[stairLength - 1]);
