@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 제한시간, 점수, 푸는 시간
+      function solution(m, ps, pt) {
+        const questionCount = ps.length;
+        let maxScore = 0;
+
+        const dfs = (level, time, sum) => {
+          if (time > m) return;
+          if (level === questionCount) {
+            maxScore = Math.max(maxScore, sum);
+          } else {
+            dfs(level + 1, time + pt[level], sum + ps[level]);
+            dfs(level + 1, time, sum);
+          }
+        };
+
+        dfs(0, 0, 0);
+
+        return maxScore;
+      }
+
+      let ps = [10, 25, 15, 6, 7];
+      let pt = [5, 12, 8, 3, 4];
+      console.log(solution(20, ps, pt));
+    </script>
+  </body>
+</html>
