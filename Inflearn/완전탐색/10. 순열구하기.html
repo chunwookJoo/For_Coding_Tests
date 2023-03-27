@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        let answer = "";
+        const visited = new Array(arr.length).fill(0);
+        const temp = [];
+
+        const dfs = (level) => {
+          if (level === m) {
+            answer += `${temp.join(" ")}\n`;
+            return;
+          }
+
+          for (let i = 0; i < arr.length; i++) {
+            if (visited[level] === 0) {
+              visited[i] = 1;
+              temp[level] = arr[i];
+              dfs(level + 1);
+              visited[i] = 0;
+            }
+          }
+        };
+
+        dfs(0);
+        return answer;
+      }
+
+      let arr = [3, 6, 9];
+      console.log(solution(2, arr));
+    </script>
+  </body>
+</html>
